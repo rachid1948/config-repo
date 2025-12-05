@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: product-service
+
+product:
+  test-message: "Hello from product-service config (default profile)"
