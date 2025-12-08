@@ -2,5 +2,13 @@ spring:
   application:
     name: product-service
 
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
 product:
-  test-message: "Hello from product-service config (default profile)"
+  message: "Hello from product-service config (default profile)"
