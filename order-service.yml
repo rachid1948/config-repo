@@ -25,4 +25,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 product:
-  message: "Hello from order-service config (default profile 1)"
+  message: "Hello from order-service config (default profile 12)"
