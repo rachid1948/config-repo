@@ -16,7 +16,6 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
 server:
   port: 8084   # comme product 8082 / order 8083, on garde 8084 pour customer
 
@@ -24,10 +23,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-    fetch-registry: true
-    register-with-eureka: true
-  instance:
-    prefer-ip-address: true
 
 product:
-  message: "Hello from costumer-service config (default profile 1)"
+  message: "Hello from costumer-service config (default profile 100)"
