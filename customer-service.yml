@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: customer-service
+
+  datasource:
+    url: jdbc:h2:mem:customer-db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8084   # comme product 8082 / order 8083, on garde 8084 pour customer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
