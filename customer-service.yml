@@ -2,7 +2,7 @@ spring:
   application:
     name: customer-service
 
-datasource:
+  datasource:
     url: jdbc:postgresql://localhost:5432/shoplite_customer_db
     username: postgres
     password: postgres
