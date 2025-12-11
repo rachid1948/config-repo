@@ -2,15 +2,20 @@ spring:
   application:
     name: customer-service
 
-  datasource:
-    url: jdbc:h2:mem:customer-db
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+datasource:
+    url: jdbc:postgresql://localhost:5432/shoplite_customer_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   port: 8084   # comme product 8082 / order 8083, on garde 8084 pour customer
