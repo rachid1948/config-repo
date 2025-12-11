@@ -29,8 +29,5 @@ eureka:
   instance:
     prefer-ip-address: true
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+product:
+  message: "Hello from costumer-service config (default profile 1)"
