@@ -15,9 +15,9 @@ spring:
             predicates:
               - Path=/api/v1/orders/**
           - id: customer-service
-            uri: lb://order-service
+            uri: lb://customer-service
             predicates:
-              - Path=/api/v1/customer/**
+              - Path=/api/v1/customers/**
 
 server:
   port: 8080
