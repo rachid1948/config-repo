@@ -16,14 +16,15 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        
-   cloud:
+
+  cloud:
     openfeign:
       client:
         config:
           default:
             connectTimeout: 2000
             readTimeout: 3000
+
 server:
   port: 8083
 
