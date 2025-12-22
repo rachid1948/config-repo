@@ -4,49 +4,52 @@ spring:
 
   cloud:
     gateway:
-      mvc:
-        routes:
-          - id: product-service
-            uri: lb://product-service
-            predicates:
-              - Path=/api/v1/products/**
-          - id: order-service
-            uri: lb://order-service
-            predicates:
-              - Path=/api/v1/orders/**
-          - id: customer-service
-            uri: lb://customer-service
-            predicates:
-              - Path=/api/v1/customers/**
-           # --- OpenAPI docs routes (Swagger) ---
-          - id: product-openapi
-            uri: lb://PRODUCT-SERVICE
-            predicates:
-              - Path=/product-service/v3/api-docs/**
-            filters:
-              - StripPrefix=1
+      routes:
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/products/**
 
-          - id: order-openapi
-            uri: lb://ORDER-SERVICE
-            predicates:
-              - Path=/order-service/v3/api-docs/**
-            filters:
-              - StripPrefix=1
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/orders/**
 
-          - id: customer-openapi
-            uri: lb://CUSTOMER-SERVICE
-            predicates:
-              - Path=/customer-service/v3/api-docs/**
-            filters:
-              - StripPrefix=1
+        - id: customer-service
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/api/v1/customers/**
+
+        # --- OpenAPI docs routes (Swagger aggregation via gateway) ---
+        - id: product-openapi
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product-service/v3/api-docs/**
+          filters:
+            - StripPrefix=1
+
+        - id: order-openapi
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/v3/api-docs/**
+          filters:
+            - StripPrefix=1
+
+        - id: customer-openapi
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/customer-service/v3/api-docs/**
+          filters:
+            - StripPrefix=1
 
 server:
   port: 8080
 
+# (On laisse Eureka ici aussi, mais avec variable => docker OK)
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
 
 management:
   endpoints:
@@ -54,10 +57,9 @@ management:
       exposure:
         include: "*"
   endpoint:
-    health:
-      show-details: always
     gateway:
       enabled: true
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
